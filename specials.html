@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Today's Special - MealHub</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .specials-section {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: left;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .special-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            margin: 0 2.4px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .special-card a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            height: 100%;
+        }
+
+        .special-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .special-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .special-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .special-card:hover .special-image img {
+            transform: scale(1.1);
+        }
+
+        .special-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #ff6b6b;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            z-index: 1;
+        }
+
+        .special-content {
+            padding: 2rem;
+        }
+
+        .special-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .special-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .special-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ff6b6b;
+            margin-bottom: 1.5rem;
+        }
+
+        .special-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .special-btn {
+            padding: 0.8rem 2rem;
+            background-color: #ff6b6b;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .special-btn:hover {
+            background-color: #ff5252;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .special-wishlist {
+            color: #666;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .special-wishlist:hover {
+            color: #ff6b6b;
+            transform: scale(1.1);
+        }
+
+        .card-icons {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 2;
+        }
+
+        .card-icon {
+            width: 35px;
+            height: 35px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 3;
+        }
+
+        .card-icon:hover {
+            background-color: #ff6b6b;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .carousel-controls {
+            display: flex;
+            gap: 15px;
+            margin-left: auto;
+            margin-top: 1rem;
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 40px;
+            height: 40px;
+            background-color: transparent;
+            border: 2px solid #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            margin: 0;
+            position: static;
+        }
+
+        .carousel-control-prev:hover,
+        .carousel-control-next:hover {
+            background-color: #333;
+            opacity: 1;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-image: none;
+            width: auto;
+            height: auto;
+            color: #333;
+            font-size: 1.2rem;
+        }
+
+        .carousel-control-prev-icon::before {
+            content: '\f060';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+        }
+
+        .carousel-control-next-icon::before {
+            content: '\f061';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+        }
+
+        .carousel-control-prev:hover .carousel-control-prev-icon,
+        .carousel-control-next:hover .carousel-control-next-icon {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .special-image {
+                height: 200px;
+            }
+            
+            .special-content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Specials Section -->
+    <section class="specials-section">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-5">
+                <div class="section-title mb-0">
+                    <h2>Today's Special</h2>
+                    <p>Discover our chef's special recommendations for today</p>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#specialOffersCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#specialOffersCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            <div id="specialOffersCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="special-card">
+                                    <a href="meal.html?id=1">
+                                        <div class="special-image">
+                                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Special Dish 1">
+                                        </div>
+                                        <div class="special-content">
+                                            <h3 class="special-title">Grilled Salmon</h3>
+                                            <p class="special-description">Fresh Atlantic salmon with lemon butter sauce and seasonal vegetables</p>
+                                            <div class="special-price">$24.99</div>
+                                            <div class="special-actions">
+                                                <button class="special-btn">Add to Cart</button>
+                                                <i class="fas fa-heart special-wishlist"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="card-icons">
+                                        <div class="card-icon">
+                                            <i class="fas fa-heart"></i>
+                                        </div>
+                                        <div class="card-icon">
+                                            <i class="fas fa-shopping-basket"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="special-card">
+                                    <a href="meal.html?id=2">
+                                        <div class="special-image">
+                                            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Special Dish 2">
+                                        </div>
+                                        <div class="special-content">
+                                            <h3 class="special-title">Vegetable Pasta</h3>
+                                            <p class="special-description">Fresh pasta with seasonal vegetables and homemade tomato sauce</p>
+                                            <div class="special-price">$18.99</div>
+                                            <div class="special-actions">
+                                                <button class="special-btn">Add to Cart</button>
+                                                <i class="fas fa-heart special-wishlist"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="card-icons">
+                                        <div class="card-icon">
+                                            <i class="fas fa-heart"></i>
+                                        </div>
+                                        <div class="card-icon">
+                                            <i class="fas fa-shopping-basket"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="special-card">
+                                    <a href="meal.html?id=3">
+                                        <div class="special-image">
+                                            <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Special Dish 3">
+                                        </div>
+                                        <div class="special-content">
+                                            <h3 class="special-title">Chicken Curry</h3>
+                                            <p class="special-description">Tender chicken in rich curry sauce with basmati rice</p>
+                                            <div class="special-price">$22.99</div>
+                                            <div class="special-actions">
+                                                <button class="special-btn">Add to Cart</button>
+                                                <i class="fas fa-heart special-wishlist"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="card-icons">
+                                        <div class="card-icon">
+                                            <i class="fas fa-heart"></i>
+                                        </div>
+                                        <div class="card-icon">
+                                            <i class="fas fa-shopping-basket"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="special-card">
+                                    <a href="meal.html?id=4">
+                                        <div class="special-image">
+                                            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Special Dish 4">
+                                        </div>
+                                        <div class="special-content">
+                                            <h3 class="special-title">Beef Steak</h3>
+                                            <p class="special-description">Premium beef steak with roasted potatoes and vegetables</p>
+                                            <div class="special-price">$29.99</div>
+                                            <div class="special-actions">
+                                                <button class="special-btn">Add to Cart</button>
+                                                <i class="fas fa-heart special-wishlist"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="card-icons">
+                                        <div class="card-icon">
+                                            <i class="fas fa-heart"></i>
+                                        </div>
+                                        <div class="card-icon">
+                                            <i class="fas fa-shopping-basket"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="special-card">
+                                    <a href="meal.html?id=5">
+                                        <div class="special-image">
+                                            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Special Dish 5">
+                                        </div>
+                                        <div class="special-content">
+                                            <h3 class="special-title">Seafood Pasta</h3>
+                                            <p class="special-description">Fresh seafood with linguine in white wine sauce</p>
+                                            <div class="special-price">$26.99</div>
+                                            <div class="special-actions">
+                                                <button class="special-btn">Add to Cart</button>
+                                                <i class="fas fa-heart special-wishlist"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="card-icons">
+                                        <div class="card-icon">
+                                            <i class="fas fa-heart"></i>
+                                        </div>
+                                        <div class="card-icon">
+                                            <i class="fas fa-shopping-basket"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="special-card">
+                                    <a href="meal.html?id=6">
+                                        <div class="special-image">
+                                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Special Dish 6">
+                                        </div>
+                                        <div class="special-content">
+                                            <h3 class="special-title">Vegetarian Bowl</h3>
+                                            <p class="special-description">Healthy bowl with quinoa, roasted vegetables, and tahini dressing</p>
+                                            <div class="special-price">$19.99</div>
+                                            <div class="special-actions">
+                                                <button class="special-btn">Add to Cart</button>
+                                                <i class="fas fa-heart special-wishlist"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="card-icons">
+                                        <div class="card-icon">
+                                            <i class="fas fa-heart"></i>
+                                        </div>
+                                        <div class="card-icon">
+                                            <i class="fas fa-shopping-basket"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="special-card">
+                                    <a href="meal.html?id=7">
+                                        <div class="special-image">
+                                            <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Special Dish 7">
+                                        </div>
+                                        <div class="special-content">
+                                            <h3 class="special-title">Mushroom Risotto</h3>
+                                            <p class="special-description">Creamy risotto with wild mushrooms and parmesan</p>
+                                            <div class="special-price">$21.99</div>
+                                            <div class="special-actions">
+                                                <button class="special-btn">Add to Cart</button>
+                                                <i class="fas fa-heart special-wishlist"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="card-icons">
+                                        <div class="card-icon">
+                                            <i class="fas fa-heart"></i>
+                                        </div>
+                                        <div class="card-icon">
+                                            <i class="fas fa-shopping-basket"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="special-card">
+                                    <a href="meal.html?id=8">
+                                        <div class="special-image">
+                                            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Special Dish 8">
+                                        </div>
+                                        <div class="special-content">
+                                            <h3 class="special-title">Lamb Chops</h3>
+                                            <p class="special-description">Grilled lamb chops with mint sauce and roasted vegetables</p>
+                                            <div class="special-price">$32.99</div>
+                                            <div class="special-actions">
+                                                <button class="special-btn">Add to Cart</button>
+                                                <i class="fas fa-heart special-wishlist"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="card-icons">
+                                        <div class="card-icon">
+                                            <i class="fas fa-heart"></i>
+                                        </div>
+                                        <div class="card-icon">
+                                            <i class="fas fa-shopping-basket"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const icons = document.querySelectorAll('.card-icon');
+
+            // Handle icon clicks
+            icons.forEach(icon => {
+                icon.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const iconType = this.querySelector('i').classList.contains('fa-heart') ? 'wishlist' : 'cart';
+                    
+                    if (iconType === 'wishlist') {
+                        // Handle wishlist action
+                        console.log('Added to wishlist');
+                    } else {
+                        // Handle cart action
+                        console.log('Added to cart');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+

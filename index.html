@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MealHub - Premium Meal Delivery</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">MealHub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#breakfast">Breakfast</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#lunch">Lunch</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#dinner">Dinner</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#specials">Specials</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="#" class="nav-link me-3"><i class="fas fa-search"></i></a>
+                    <a href="#" class="nav-link me-3"><i class="fas fa-user"></i></a>
+                    <a href="#" class="nav-link"><i class="fas fa-shopping-bag"></i></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-md-6">
+                    <h1 class="display-4 fw-bold">Fresh & Delicious Meals</h1>
+                    <p class="lead">Delivered to your doorstep daily</p>
+                    <a href="#meals" class="btn btn-dark btn-lg">Order Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Our Meal Categories</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="category-card">
+                        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Breakfast Meals">
+                        <div class="category-info">
+                            <h3>Breakfast Meals</h3>
+                            <a href="#breakfast" class="btn btn-outline-light">View Menu</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="category-card">
+                        <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Lunch Specials">
+                        <div class="category-info">
+                            <h3>Lunch Specials</h3>
+                            <a href="#lunch" class="btn btn-outline-light">View Menu</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="category-card">
+                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Dinner Options">
+                        <div class="category-info">
+                            <h3>Dinner Options</h3>
+                            <a href="#dinner" class="btn btn-outline-light">View Menu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Meals -->
+    <section class="featured-products py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Today's Specials</h2>
+            <div class="row g-4">
+                <div class="col-md-4 col-lg-3">
+                    <div class="product-card">
+                        <a href="meal.html?id=1" class="product-card-link"></a>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Avocado Toast" loading="lazy">
+                            <div class="product-actions">
+                                <button class="btn btn-light wishlist" onclick="event.stopPropagation()"><i class="fas fa-heart"></i></button>
+                                <button class="btn btn-light add-to-cart" onclick="event.stopPropagation()"><i class="fas fa-shopping-bag"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h4>Avocado Toast</h4>
+                            <p class="price">$12.99</p>
+                            <a href="meal.html?id=1" class="btn btn-dark w-100">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <div class="product-card">
+                        <a href="meal.html?id=2" class="product-card-link"></a>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Quinoa Bowl" loading="lazy">
+                            <div class="product-actions">
+                                <button class="btn btn-light wishlist" onclick="event.stopPropagation()"><i class="fas fa-heart"></i></button>
+                                <button class="btn btn-light add-to-cart" onclick="event.stopPropagation()"><i class="fas fa-shopping-bag"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h4>Quinoa Bowl</h4>
+                            <p class="price">$14.99</p>
+                            <a href="meal.html?id=2" class="btn btn-dark w-100">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <div class="product-card">
+                        <a href="meal.html?id=3" class="product-card-link"></a>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Salmon Salad" loading="lazy">
+                            <div class="product-actions">
+                                <button class="btn btn-light wishlist" onclick="event.stopPropagation()"><i class="fas fa-heart"></i></button>
+                                <button class="btn btn-light add-to-cart" onclick="event.stopPropagation()"><i class="fas fa-shopping-bag"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h4>Salmon Salad</h4>
+                            <p class="price">$16.99</p>
+                            <a href="meal.html?id=3" class="btn btn-dark w-100">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <div class="product-card">
+                        <a href="meal.html?id=4" class="product-card-link"></a>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Pasta Primavera" loading="lazy">
+                            <div class="product-actions">
+                                <button class="btn btn-light wishlist" onclick="event.stopPropagation()"><i class="fas fa-heart"></i></button>
+                                <button class="btn btn-light add-to-cart" onclick="event.stopPropagation()"><i class="fas fa-shopping-bag"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h4>Pasta Primavera</h4>
+                            <p class="price">$15.99</p>
+                            <a href="meal.html?id=4" class="btn btn-dark w-100">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center">
+                    <h2>Stay Updated</h2>
+                    <p>Subscribe to our newsletter for daily specials and exclusive offers</p>
+                    <form class="mt-4">
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="Your email address">
+                            <button class="btn btn-dark" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>MealHub</h5>
+                    <p>Fresh meals delivered daily</p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#breakfast" class="text-white">Breakfast</a></li>
+                        <li><a href="#lunch" class="text-white">Lunch</a></li>
+                        <li><a href="#dinner" class="text-white">Dinner</a></li>
+                        <li><a href="#specials" class="text-white">Specials</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Support</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-white">FAQs</a></li>
+                        <li><a href="#" class="text-white">Delivery Info</a></li>
+                        <li><a href="#" class="text-white">Nutrition Info</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Follow Us</h5>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html> 
